@@ -1,0 +1,21 @@
+version: "3"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+#      this volume says do not try and make a volume mapping for this folder as there is not a second option, this is because we want to still used the node_modules in the image
+      - /app/node_modules
+      # this then maps everything else from our machine to the docker image so any changes we make are reflected within the container
+      - .:/app
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
