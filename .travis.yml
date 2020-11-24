@@ -1,0 +1,12 @@
+#whenever you are using docker with travis you need to have sudo permissions
+sudo: required
+# this is a list of services we need in order to complete the tasks
+services:
+  - docker
+# this is a list of commands to run before our tests are ran or whatever we are doing so we tell it how to build our docker image
+before_install:
+  - docker build -t adear/docker-react -f Dockerfile.dev .
+# tells travis what commands need to be run to start up the test sweet, or whatever needs to be done
+script:
+  # we tell the docker image to run passing in the enviroment variable CI to make it only run the tests and not start the watcher.
+  - docker run -e CI=true adear/docker-react npm run test
