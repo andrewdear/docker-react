@@ -10,3 +10,16 @@ before_install:
 script:
   # we tell the docker image to run passing in the enviroment variable CI to make it only run the tests and not start the watcher.
   - docker run -e CI=true adear/docker-react npm run test
+  # bare in mind that docker in the name of the application
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-us-west-2-680970842204"
+  bucket_path: "docker"
+  # this says only attempt this when we push to master
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
