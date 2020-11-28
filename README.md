@@ -1,3 +1,11 @@
+#CUSTOM BITS FROM TUTORIAL
+
+the docker-compose file is only used for development the dockerfile is what is used for deplotment with the travis script
+
+When i use this bare in mind that amazon linux 2 uses the compose file for the generation of the dockerfile, at least with elastic beanstalk anyway
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
